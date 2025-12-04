@@ -1,6 +1,9 @@
 import { useFieldArray, useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
-import { useUpdatePersonalInformationMutation } from '../../hooks/personal-information';
+import { useEffect } from 'react';
+import {
+  usePersonalInformationQuery,
+  useUpdatePersonalInformationMutation,
+} from '../../hooks/personal-information';
 import {
   addressTypes,
   documentTypes,
@@ -9,7 +12,6 @@ import {
   phonePreferred,
   phoneTypes,
 } from './options';
-import { getPersonalInformation } from '../../apis/personal-information';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import Select from '../../components/select';
@@ -39,7 +41,7 @@ const defaultPersonalInformation = {
     {
       phone: '',
       type: 0,
-      preffered: false,
+      preferred: false,
     },
   ],
   documents: [
@@ -66,16 +68,6 @@ const PersonalInformation = () => {
     reset,
   } = useForm(defaultPersonalInformation);
 
-  const [addresses, setAddresses] = useState([
-    {
-      country: '',
-      city: '',
-      street: '',
-      postalCode: '',
-      type: 0,
-    },
-  ]);
-
   const { fields: addressFields, append: appendAddress } = useFieldArray({
     control,
     name: 'addresses',
@@ -101,49 +93,19 @@ const PersonalInformation = () => {
     name: 'occupations',
   });
 
-  const {
-    mutateAsync: updatePersonalInformation,
-    isPending,
-    error,
-  } = useUpdatePersonalInformationMutation();
+  const { data } = usePersonalInformationQuery('0Y_F3Tk');
+
+  const { mutateAsync: updatePersonalInformation, isPending } =
+    useUpdatePersonalInformationMutation();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getPersonalInformation('0Y_F3Tk');
-
-        reset(response.data);
-
-        // setAddresses(data.addresses);
-        // setEmails(data.emails);
-        // setPhones(data.phones);
-        // setDocuments(data.documents);
-        // setOccupations(data.occupations);
-      } catch (err) {
-        console.error('Get personal information failed: ', err);
-      }
-    };
-    fetchData();
-  }, [reset]);
+    if (data?.data) {
+      reset(data.data);
+    }
+  }, [data, reset]);
 
   const onSubmit = async (data) => {
-    try {
-      const response = await updatePersonalInformation({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        middleName: data.middleName,
-        dateOfBirth: data.dateOfBirth,
-        age: data.age,
-        addresses: addresses,
-        emails: emails,
-        phones: phones,
-        documents: documents,
-        occupations: occupations,
-      });
-      console.log(response.data);
-    } catch (err) {
-      console.error('Login failed: ', err);
-    }
+    await updatePersonalInformation({ id: '0Y_F3Tk', data });
   };
 
   const handleAddAddress = () => {
@@ -296,7 +258,9 @@ const PersonalInformation = () => {
                     label="Type"
                     options={addressTypes}
                     error={errors.addresses?.[index]?.type?.message}
-                    {...register(`addresses.${index}.type`)}
+                    {...register(`addresses.${index}.type`, {
+                      required: 'Address type is required',
+                    })}
                   />
                 </div>
               );
@@ -336,7 +300,7 @@ const PersonalInformation = () => {
                     options={emailPreferred}
                     error={errors.emails?.[index]?.preferred?.message}
                     {...register(`emails.${index}.preferred`, {
-                      required: 'Email preferred is required',
+                      setValueAs: (value) => value === 'true' || value === true,
                     })}
                   />
                 </div>
@@ -377,7 +341,7 @@ const PersonalInformation = () => {
                     options={phonePreferred}
                     error={errors.phones?.[index]?.preferred?.message}
                     {...register(`phones.${index}.preferred`, {
-                      required: 'Phone preferred is required',
+                      setValueAs: (value) => value === 'true' || value === true,
                     })}
                   />
                 </div>

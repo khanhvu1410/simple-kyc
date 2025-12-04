@@ -1,6 +1,10 @@
 import { Outlet, useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faList } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMagnifyingGlass,
+  faList,
+  faDollarSign,
+} from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { ADMIN_URL } from '../../constant/url';
 
@@ -10,6 +14,12 @@ const navigateItems = [
     icon: faUser,
     label: 'My Profile',
     url: ADMIN_URL.PERSONAL_INFORMATION,
+  },
+  {
+    key: 'financial-status',
+    icon: faDollarSign,
+    label: 'Financial Status',
+    url: ADMIN_URL.FINANCIAL_STATUS,
   },
   {
     key: 'my-submissions',

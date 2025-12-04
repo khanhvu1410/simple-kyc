@@ -1,70 +1,131 @@
 {
   "users": [
     {
+      "id": "KbriJKi",
       "email": "officer@gmail.com",
-      "password": "$2a$10$x1/frEICkKU5kb.MLTlt.OEQiuSWdjPJrle3TjuqWeraf0PdYwn5y",
-      "id": "KbriJKi"
+      "password": "$2a$10$x1/frEICkKU5kb.MLTlt.OEQiuSWdjPJrle3TjuqWeraf0PdYwn5y"
     },
     {
-      "email": "khanh@gmail.com",
-      "password": "$2a$10$0ZWLsSD5HafIyBn98gCryuZQQPyJBn6lWIiIc9HrlnHS.OYgNF1u2",
       "id": "udP6zDJ",
-      "personalInformationId": "0Y_F3Tk"
+      "personalInformationId": "0Y_F3Tk",
+      "financialStatusId": "019aEA2d",
+      "email": "khanh@gmail.com",
+      "password": "$2a$10$0ZWLsSD5HafIyBn98gCryuZQQPyJBn6lWIiIc9HrlnHS.OYgNF1u2"
     }
   ],
   "personalInformation": [
     {
+      "id": "0Y_F3Tk",
       "firstName": "Khanh",
       "lastName": "Vu",
-      "dateOfBirth": "14/10/2003",
+      "dateOfBirth": "2025-12-02",
       "age": 22,
-      "id": "0Y_F3Tk"
+      "addresses": [
+        {
+          "country": "Vietnam",
+          "city": "Hanoi",
+          "street": "Hang Dau",
+          "postalCode": 10000,
+          "type": "1"
+        },
+        {
+          "country": "New country",
+          "city": "New city",
+          "street": "New street",
+          "postalCode": "12345",
+          "type": "1"
+        }
+      ],
+      "emails": [
+        {
+          "email": "khanh@gmail.com",
+          "type": "1",
+          "preferred": false
+        }
+      ],
+      "phones": [
+        {
+          "phone": "0912345678",
+          "type": "1",
+          "preferred": false
+        },
+        {
+          "phone": "0911122233",
+          "type": "0",
+          "preferred": true
+        }
+      ],
+      "documents": [
+        {
+          "type": 0,
+          "expiryDate": "2025-12-02"
+        },
+        {
+          "type": "Passport",
+          "expiryDate": "2025-12-02"
+        }
+      ],
+      "occupations": [
+        {
+          "occupation": "Employee",
+          "fromDate": "2025-12-16",
+          "toDate": "2025-12-15"
+        },
+        {
+          "occupation": "Manager",
+          "fromDate": "2025-12-10",
+          "toDate": "2025-12-02"
+        }
+      ],
+      "middleName": ""
     }
   ],
-  "addresses": [
+  "financialStatus": [
     {
-      "personalInformationId": "0Y_F3Tk",
-      "country": "Vietnam",
-      "city": "Hanoi",
-      "street": "Hang Dau",
-      "postalCode": 10000,
-      "type": 1,
-      "id": "MgbDMjN"
-    }
-  ],
-  "emails": [
-    {
-      "personalInformationId": "0Y_F3Tk",
-      "email": "khanhbarca1410@gmail.com",
-      "type": 0,
-      "preferred": false,
-      "id": "t7xQAMr"
-    }
-  ],
-  "phones": [
-    {
-      "personalInformationId": "0Y_F3Tk",
-      "phone": "0928492950",
-      "type": 1,
-      "preffered": true,
-      "id": "0UD4uRy"
-    }
-  ],
-  "documents": [
-    {
-      "personalInformationId": "0Y_F3Tk",
-      "type": 2,
-      "expiryDate": "22/06/2028",
-      "id": "x-A0c7x"
-    }
-  ],
-  "occupations": [
-    {
-      "personalInformationId": "0Y_F3Tk",
-      "occupation": "Employee",
-      "fromDate": "07/08/2025",
-      "toDate": "07/08/2026",
-      "id": "oY_3oK1"
+      "id": "019aEA2d",
+      "incomes": [
+        {
+          "type": 1,
+          "amount": 100.5
+        },
+        {
+          "type": "0",
+          "amount": "110.2"
+        }
+      ],
+      "assets": [
+        {
+          "type": 2,
+          "amount": 201.3
+        },
+        {
+          "type": "1",
+          "amount": "99"
+        }
+      ],
+      "liabilities": [
+        {
+          "type": 0,
+          "amount": 311.2
+        },
+        {
+          "type": "1",
+          "amount": "229"
+        }
+      ],
+      "wealthSources": [
+        {
+          "type": "0",
+          "amount": 121.1
+        },
+        {
+          "type": "1",
+          "amount": "123.3"
+        }
+      ],
+      "total": 734.1,
+      "experience": "1",
+      "riskTolerance": 0
     }
   ]
 }

@@ -20,17 +20,13 @@ const Login = () => {
   const { mutateAsync: login, isPending, error, reset } = useLoginMutation();
 
   const onSubmit = async (data) => {
-    try {
-      const response = await login({
-        email: data.email,
-        password: data.password,
-      });
-      const { accessToken } = response.data;
-      localStorage.setItem(TOKEN, accessToken);
-      return navigate(ADMIN_URL.DASHBOARD);
-    } catch (err) {
-      console.error('Login failed: ', err);
-    }
+    const response = await login({
+      email: data.email,
+      password: data.password,
+    });
+    const { accessToken } = response.data;
+    localStorage.setItem(TOKEN, accessToken);
+    return navigate(ADMIN_URL.DASHBOARD);
   };
 
   watch(() => {
@@ -67,9 +63,6 @@ const Login = () => {
             Lost Password?
           </a>
         </div>
-        {error?.message && (
-          <small className="text-red-600 my-4 block">{error.message}</small>
-        )}
         <Button type="submit" isLoading={isPending} disabled={isPending}>
           Login to your account
         </Button>

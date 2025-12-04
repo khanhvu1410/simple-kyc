@@ -6,6 +6,7 @@ import AdminLayout from '../layouts/admin';
 import Dashboard from '../pages/dashboard';
 import Login from '../pages/login';
 import PersonalInformation from '../pages/personal-information';
+import FinancialStatus from '../pages/financial-status';
 
 const Router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ const Router = createBrowserRouter([
         path: ADMIN_URL.PERSONAL_INFORMATION,
         index: true,
         Component: PersonalInformation,
+      },
+      {
+        path: ADMIN_URL.FINANCIAL_STATUS,
+        index: true,
+        Component: FinancialStatus,
       },
     ],
   },
